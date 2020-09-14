@@ -4,7 +4,7 @@ Proyecto para tratar de predecir resultados de partidos de tenis utilizando Mach
 
 ## Wiki
 
-Consulta la documentación en la [Wiki](https://github.com/AngelLM/TennisMatchPredictor/wiki). En ella encontrarás explicado, paso por paso, el desarrollo del proyecto.
+Consulta la documentación en la [Wiki](https://github.com/AngelLM/TennisMatchPredictor/wiki/Inicio). En ella encontrarás explicado, paso por paso, el desarrollo del proyecto.
 
 ## Licencia
 
