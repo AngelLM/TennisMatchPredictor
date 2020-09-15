@@ -9,8 +9,20 @@ import time
 import re
 import sys,  traceback
 import os
-  
-#Creación de una instancia de firefox (visible)                           
+
+# Cierra todas las instancias del driver y cierra todos los procesos firefox.exe
+def cerrarWebdriver(driver):
+    try:
+        driver.close()
+        driver.quit()
+        os.system("taskkill /f /im firefox.exe /T") 
+    except:
+        print("Cerrando el webdriver...")
+    finally:    
+        print("Webdriver cerrado.")
+          
+    
+#Creacion de una instancia de firefox (visible)                           
 #profile = webdriver.FirefoxProfile()
 #profile.set_preference('permissions.default.image', 2)
 #driver = webdriver.Firefox(profile)
@@ -21,7 +33,6 @@ try:
     print ("Se elimina la carpeta '/"+dir_datos)
 except FileNotFoundError:
     print ("No existe la carpeta '/"+dir_datos)
-    
 try:
     os.mkdir(dir_datos)
     print ("Se crea la carpeta '/"+dir_datos)
@@ -29,10 +40,11 @@ except:
     print("Ha ocurrido un error al crear la carpeta '/"+dir_datos)
     sys.exit()
     
-#Creación de una instancia de firefox (no visible)
+#Creacion de una instancia de firefox (no visible)
 options = Options()
 options.headless = True
 driver = webdriver.Firefox(options=options)
+#driver=webdriver.Remote("http://127.0.0.1:4444",desired_capabilities=options.to_capabilities())
 
 fErrores = open(os.path.join(dir_datos,"errores.txt"),'w+')
 fErrores.close()
@@ -48,7 +60,7 @@ fEstadisticas = open(os.path.join(dir_datos,"estadisticas.txt"),'w')
 for id in range(85,11094):
 
     #Control de excepciones: 
-    # - Si hay problemas con algún jugador, continúa con el siguiente. Guarda el id del jugador problemático en errores.txt(se borra en cada ejecución)
+    # - Si hay problemas con algun jugador, continua con el siguiente. Guarda el id del jugador problematico en errores.txt(se borra en cada ejecucion)
     # - Si el usuario pulsa Ctrl+C, el programa se cierra
     try:
 
@@ -158,18 +170,19 @@ for id in range(85,11094):
             total_partidos = total_partidos + 1
             f.write(date + ", " + tournament + ", " +  surface + ", " + round + ", " + win + ", " + playerName +", " + rank + ", " + elo + ", " +  oponentName + ", " + oponentRank + ", " + oponentElo + "\n")
         f.close()
-        #print("***** Estadísticas del jugador " + str(id)+" ******")
+        #print("***** Estadisticas del jugador " + str(id)+" ******")
         t_jugador=time.time()-t_jugador
         print("Número de partidos del jugador "+ str(id) + ": "+str(total_partidos))
-        #print("Tiempo ejecución: "+str(t_jugador))
+        #print("Tiempo ejecucion: "+str(t_jugador))
         fEstadisticas.write(str(id)+", "+str(total_partidos)+", "+str(t_jugador)+"\n")
     except KeyboardInterrupt:
         print("El usuario ha solicitado el fin de la ejecución")
+        cerrarWebdriver(driver)
         sys.exit()
     except:
         exc_type, exc_value, exc_traceback = sys.exc_info()
         print("Se ha producido un error con el jugador "+str(id))
-        #print("Descripción del error:", exc_type)
+        #print("Descripcion del error:", exc_type)
         #print("Valor:", exc_value)
         fErrores.write(str(id) + ", "+str(exc_type)+ ", "+str(exc_value)+"\n")
         traceback.print_tb(exc_traceback, limit=1, file=fErrores)
@@ -178,5 +191,5 @@ for id in range(85,11094):
 fErrores.close()
 fEstadisticas.close()
 
-driver.close()
-driver.quit()
+cerrarWebdriver(driver)
+sys.exit()
