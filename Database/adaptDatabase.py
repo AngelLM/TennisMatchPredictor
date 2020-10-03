@@ -39,8 +39,7 @@ with open("mydatabase.csv",'rt') as input_file:
     reader = csv.reader(input_file)
     headers = next(reader, None)
 
-    newrows_parameters=[]
-    newrows_results=[]
+    newrows=[]
 
     ganaA=0
     ganaB=0
@@ -51,7 +50,7 @@ with open("mydatabase.csv",'rt') as input_file:
             surfaceWinRatioB = ComputeSurfaceWinRatio(row,2)
             if surfaceWinRatioA!="NoSurface":
                 if random.random()>0.5:
-                    newrows_parameters.append([row[7],              # Player A Rank             7
+                    newrows.append([row[7],              # Player A Rank             7
                                             row[8],                 # Player A Points           8
                                             row[9],                 # Player A Age              9
                                             row[10],                # Player A Right-Handed     10
@@ -66,12 +65,12 @@ with open("mydatabase.csv",'rt') as input_file:
                                             row[22],                # Player B Left-Handed      22
                                             row[23],                # Player B Win Streak       23
                                             row[24],                # Player B Lose Streak      24
-                                            surfaceWinRatioB        # Player B Surface Win Ratio
+                                            surfaceWinRatioB,       # Player B Surface Win Ratio
+                                            1                       # Player A Wins
                                             ])
-                    newrows_results.append("1")
                     ganaA+=1
                 else:
-                    newrows_parameters.append([row[18],             # Player B Rank             18
+                    newrows.append([row[18],             # Player B Rank             18
                                             row[19],                # Player B Points           19
                                             row[20],                # Player B Age              20
                                             row[21],                # Player B Right-Handed     21
@@ -86,20 +85,15 @@ with open("mydatabase.csv",'rt') as input_file:
                                             row[11],                # Player A Left-Handed      11
                                             row[12],                # Player A Win Streak       12
                                             row[13],                # Player A Lose Streak      13
-                                            surfaceWinRatioA        # Player A Surface Win Ratio
+                                            surfaceWinRatioA,       # Player A Surface Win Ratio
+                                            0                       # Player A Looses
                                             ])
-                    newrows_results.append("0")
                     ganaB+=1
 
-with open("mydatabase_params.csv",'wt') as output_file:
+with open("addapteddatabase.csv",'wt') as output_file:
     output_file = csv.writer(output_file, lineterminator='\n')
-    output_file.writerow(['Player_A_Rank','Player_A_Points','Player_A_Age','Player_A_RightHanded','Player_A_LeftHanded','Player_A_Win_Streak','Player_A_Lose_Streak','Player_A_Surface_Win_Ratio','Player_B_Rank','Player_B_Points','Player_B_Age','Player_B_RightHanded','Player_B_LeftHanded','Player_B_Win_Streak','Player_B_Lose_Streak','Player_B_Surface_Win_Ratio'])
-    output_file.writerows(newrows_parameters)
-
-with open("mydatabase_results.csv",'wt') as output_file:
-    output_file = csv.writer(output_file, lineterminator='\n')
-    output_file.writerow(['Player_A_Wins'])
-    output_file.writerows(newrows_results)
+    output_file.writerow(['Player_A_Rank','Player_A_Points','Player_A_Age','Player_A_RightHanded','Player_A_LeftHanded','Player_A_Win_Streak','Player_A_Lose_Streak','Player_A_Surface_Win_Ratio','Player_B_Rank','Player_B_Points','Player_B_Age','Player_B_RightHanded','Player_B_LeftHanded','Player_B_Win_Streak','Player_B_Lose_Streak','Player_B_Surface_Win_Ratio', 'Player_A_Wins'])
+    output_file.writerows(newrows)
 
 print("Gana A: " + str(ganaA) + " --- Gana B: " + str(ganaB))
 print("Terminado en " + str(time.time()-tic) + " segundos.")
