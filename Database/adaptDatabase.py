@@ -51,43 +51,43 @@ with open("mydatabase.csv",'rt') as input_file:
             if surfaceWinRatioA!="NoSurface":
                 if random.random()>0.5:
                     newrows.append([row[7],              # Player A Rank             7
-                                            row[8],                 # Player A Points           8
-                                            row[9],                 # Player A Age              9
-                                            row[10],                # Player A Right-Handed     10
-                                            row[11],                # Player A Left-Handed      11
-                                            row[12],                # Player A Win Streak       12
-                                            row[13],                # Player A Lose Streak      13
-                                            surfaceWinRatioA,       # Player A Surface Win Ratio
-                                            row[18],                # Player B Rank             18
-                                            row[19],                # Player B Points           19
-                                            row[20],                # Player B Age              20
-                                            row[21],                # Player B Right-Handed     21
-                                            row[22],                # Player B Left-Handed      22
-                                            row[23],                # Player B Win Streak       23
-                                            row[24],                # Player B Lose Streak      24
-                                            surfaceWinRatioB,       # Player B Surface Win Ratio
-                                            1                       # Player A Wins
-                                            ])
+                                    row[8],                 # Player A Points           8
+                                    row[9],                 # Player A Age              9
+                                    row[10],                # Player A Right-Handed     10
+                                    row[11],                # Player A Left-Handed      11
+                                    row[12],                # Player A Win Streak       12
+                                    row[13],                # Player A Lose Streak      13
+                                    surfaceWinRatioA,       # Player A Surface Win Ratio
+                                    row[18],                # Player B Rank             18
+                                    row[19],                # Player B Points           19
+                                    row[20],                # Player B Age              20
+                                    row[21],                # Player B Right-Handed     21
+                                    row[22],                # Player B Left-Handed      22
+                                    row[23],                # Player B Win Streak       23
+                                    row[24],                # Player B Lose Streak      24
+                                    surfaceWinRatioB,       # Player B Surface Win Ratio
+                                    1                       # Player A Wins
+                                    ])
                     ganaA+=1
                 else:
                     newrows.append([row[18],             # Player B Rank             18
-                                            row[19],                # Player B Points           19
-                                            row[20],                # Player B Age              20
-                                            row[21],                # Player B Right-Handed     21
-                                            row[22],                # Player B Left-Handed      22
-                                            row[23],                # Player B Win Streak       23
-                                            row[24],                # Player B Lose Streak      24
-                                            surfaceWinRatioB,       # Player B Surface Win Ratio
-                                            row[7],                 # Player A Rank             7
-                                            row[8],                 # Player A Points           8
-                                            row[9],                 # Player A Age              9
-                                            row[10],                # Player A Right-Handed     10
-                                            row[11],                # Player A Left-Handed      11
-                                            row[12],                # Player A Win Streak       12
-                                            row[13],                # Player A Lose Streak      13
-                                            surfaceWinRatioA,       # Player A Surface Win Ratio
-                                            0                       # Player A Looses
-                                            ])
+                                    row[19],                # Player B Points           19
+                                    row[20],                # Player B Age              20
+                                    row[21],                # Player B Right-Handed     21
+                                    row[22],                # Player B Left-Handed      22
+                                    row[23],                # Player B Win Streak       23
+                                    row[24],                # Player B Lose Streak      24
+                                    surfaceWinRatioB,       # Player B Surface Win Ratio
+                                    row[7],                 # Player A Rank             7
+                                    row[8],                 # Player A Points           8
+                                    row[9],                 # Player A Age              9
+                                    row[10],                # Player A Right-Handed     10
+                                    row[11],                # Player A Left-Handed      11
+                                    row[12],                # Player A Win Streak       12
+                                    row[13],                # Player A Lose Streak      13
+                                    surfaceWinRatioA,       # Player A Surface Win Ratio
+                                    0                       # Player A Looses
+                                    ])
                     ganaB+=1
 
 with open("addapteddatabase.csv",'wt') as output_file:
