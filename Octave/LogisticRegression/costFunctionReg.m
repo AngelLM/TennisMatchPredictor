@@ -2,10 +2,10 @@ function [J, grad] = costFunctionReg(theta, X, y, lambda)
 %COSTFUNCTIONREG Compute cost and gradient for logistic regression with regularization
 
 % Initialize some useful values
-m = length(y); % number of training examples
+m = length(y); % Number of training examples
 
 J = 0;
-grad = zeros(size(theta));
+grad = zeros(size(theta)); % We create the "grad" matrix, filled with "0", which has the same size as the "theta" matrix.
 
 %                                            m                                              n
 % The regularized cost function: J(θ)= (1/m) ∑[-yᶦlog(hθ(xᶦ))-(1-yᶦ)log(1-hθ(xᶦ))] + (λ/2m) ∑θⱼ²
